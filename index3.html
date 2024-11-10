@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of tasks</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <p id="mensaje"></p>
+    <div class="container">
+        <div class="reloj" id="reloj"></div>
+        <div class="tareas">
+            <h1>To-Do List</h1>
+            <div class="input-container"> 
+                <input type="text" id="tarea" placeholder="Please enter something I'm hungry">
+                <button onclick="agregarTarea()">Enter</button>
+            </div>
+            <ul id="listaTareas"></ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        function actualizarReloj() {
+            const ahora = new Date();
+            const horas = String(ahora.getHours()).padStart(2, '0');
+            const minutos = String(ahora.getMinutes()).padStart(2, '0');
+            const simbolo = horas >= 6 && horas < 18 ? '☀️' : '🌙'; 
+            document.getElementById('reloj').textContent = `${simbolo} ${horas}:${minutos}`;
+    
+            let mensaje; 
+            if (horas < 12) {
+                mensaje = 'Good morning';
+            } else if (horas < 18) {
+                mensaje = 'Good evening';
+            } else {
+                mensaje = 'Good night';
+            }
+    
+            document.getElementById('mensaje').textContent = mensaje;
+        }
+    
+        setInterval(actualizarReloj, 1000);
+        actualizarReloj();
+    </script>
+</body>
+</html>
